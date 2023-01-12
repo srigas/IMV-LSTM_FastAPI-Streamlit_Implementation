@@ -1,5 +1,21 @@
 # IMV-LSTM FastAPI-Streamlit Implementation
 
+## Table of Contents
+
++ [About](#about)
++ [Getting Started](#getting_started)
+    + [Prerequisites](#prerequisites)
++ [Installing the requirements](#installing)
+  + [Using the Makefile](#installing_makefile)
+  + [Manual Installations](#installing_manually)
++ [Running the code](#run_locally)
+    + [Execution Options](#execution_options)
+        + [main.py](#src_main)
++ [Todo](#todo)
++ [License](#license)
+
+## About <a name = "about"></a>
+
 This repository corresponds to a "full-stack" implementation of the IMV-LSTM neural network presented in [this](https://arxiv.org/pdf/1905.12034.pdf) paper. This falls under the broader category of Explainable AI, where not only is the LSTM used to make predictions on time-series data, but we can also gain insights on why it makes said predictions, i.e. which features are more influential for them, as well as how this influence (importance) varies over time. The model is trained using a subset of the [PM2.5 Beijing Data](https://archive.ics.uci.edu/ml/datasets/Beijing+PM2.5+Data) dataset and is subsequently evaluated using either the remaining data points (there is a [test_data.csv](/data/test_data.csv) file available in the [data](/data) folder of this repository), or custom-made testing datasets, as long as they are in the form of the PM2.5 dataset.
 
 For the whole process of training and evaluating the model, three endpoints are generated using [FastAPI](https://fastapi.tiangolo.com/). The first is an endpoint for data pre-processing called `preprocessing`, with a callable function that takes care of pre-processing and transformations on the PM2.5 training dataset. The arguments are the following:
