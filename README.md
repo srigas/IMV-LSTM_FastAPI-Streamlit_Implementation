@@ -62,9 +62,11 @@ The directory `backend/data` contains a [sample_request.csv](/backend/data/sampl
 
 As far as the application's frontend is concerned, it is based on [Streamlit](https://streamlit.io/https://streamlit.io/) and creates a user interface where all the endpoint call parameters can be configured through sliders. The following image shows how the UI looks like once everything is up and running. To customize the theme (for example, change by default to a darker theme) you can tinker with the [config.toml](/frontend/.streamlit/config.toml) file.
 
+![UI](https://github.com/srigas/temp_rep/blob/main/imvlstmstreamlit/uigif.gif)
+
 ## Docker <a name = "docker"></a>
 
-In order to ensure compatibility irregardless of OS, python versions, libraries, etc. the web application has been containerized into [Docker](https://www.docker.com/) containers. Both the frontend and backend have their own Dockerfile and their relative dependency is encoded into the docker-compose.yml file in the root directory. 
+In order to ensure compatibility irregardless of OS, python versions, libraries, etc. the web application has been containerized into [Docker](https://www.docker.com/) containers. Both the frontend and backend have their own Dockerfile and their relative dependency is encoded into the docker-compose.yml file in the root directory.
 
 ### Installation <a name = "installation"></a>
 
