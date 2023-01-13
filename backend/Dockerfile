@@ -1,9 +1,13 @@
+# Retrieve the base image
 FROM tiangolo/uvicorn-gunicorn:python3.10
 
+# Create a new directory
 RUN mkdir /backend
 
+# Copy everything into it
 COPY . /backend
 
+# And make it the base directory
 WORKDIR /backend
 
 # Install all required libraries
