@@ -3,26 +3,34 @@
 ## Table of Contents
 
 + [About](#about)
-+ [Getting Started](#getting_started)
-    + [Prerequisites](#prerequisites)
-+ [Installing the requirements](#installing)
-  + [Using the Makefile](#installing_makefile)
-  + [Manual Installations](#installing_manually)
-+ [Running the code](#run_locally)
-    + [Execution Options](#execution_options)
-        + [main.py](#src_main)
-+ [Todo](#todo)
-+ [License](#license)
++ [FastAPI](#fastapi)
+    + [Preprocessing](#preprocessing)
+    + [Training](#training)
+    + [Evaluation](#evaluation)
+    + [Inference](#inference)
++ [Streamlit](#streamlit)
++ [Docker](#docker)
+    + [Installation](#installation)
 
 ## About <a name = "about"></a>
 
-This repository corresponds to a "full-stack" implementation of the IMV-LSTM neural network presented in [this](https://arxiv.org/pdf/1905.12034.pdf) paper. This falls under the broader category of Explainable AI, where not only is the LSTM used to make predictions on time-series data, but we can also gain insights on why it makes said predictions, i.e. which features are more influential for them, as well as how this influence (importance) varies over time. The model is trained using a subset of the [PM2.5 Beijing Data](https://archive.ics.uci.edu/ml/datasets/Beijing+PM2.5+Data) dataset and is subsequently evaluated using either the remaining data points (there is a [test_data.csv](/data/test_data.csv) file available in the [data](/data) folder of this repository), or custom-made testing datasets, as long as they are in the form of the PM2.5 dataset.
+This repository corresponds to a "full-stack" implementation of the IMV-LSTM neural network presented in [this](https://arxiv.org/pdf/1905.12034.pdf) paper. This falls under the broader category of Explainable AI, where not only is the LSTM used to make predictions on time-series data, but we can also gain insights on why it makes said predictions, i.e. which features are more influential for them, as well as how this influence (importance) varies over time. The model is trained using a subset of the [PM2.5 Beijing Data](https://archive.ics.uci.edu/ml/datasets/Beijing+PM2.5+Data) dataset and is subsequently evaluated using either the remaining data-points, or custom-made evaluation datasets, as long as they are in the form of the PM2.5 dataset. The model can also be used for inference.
 
-For the whole process of training and evaluating the model, three endpoints are generated using [FastAPI](https://fastapi.tiangolo.com/). The first is an endpoint for data pre-processing called `preprocessing`, with a callable function that takes care of pre-processing and transformations on the PM2.5 training dataset. The arguments are the following:
+The structure of the project is split into two main components: the [backend](/backend), containing the FastAPI code and all ML related scripts, and the [frontend](/frontend), containing the streamlit code and configurations for the user interface of the project.
+
+## FastAPI <a name = "fastapi"></a>
+
+As far as the backend is concerned, for the whole process of training and evaluating the model, as well as performing inference, four endpoints are generated using [FastAPI](https://fastapi.tiangolo.com/).
+
+### Preprocessing <a name = "preprocessing"></a>
+
+The endpoint is called `preprocessing` and aims at cleaning the data properly, preprocessing (for example, filling missing values) and scaling them before splitting them to be used for training and validation. The subset of the PM2.5 dataset used for the training of the model can be found in [backend/data](/backend/data/train_data.csv). The features that are eventually used for training are: `pm2.5`, `DEWP`, `TEMP`, `PRES`, `cbwd`, `Iws`, `Is`, `Ir`. The arguments for the call are the following:
 
 - `window_size`: integer with default value 10, corresponds to the number previous data-points that compose the feature matrix which is used for the prediction.
 - `predict_window`: integer with default value 1, corresponds to the number of data-points to be predicted in the future. Obviously, higher values of this parameter lead to less accurate predictions (quantity over quality).
 - `val_percent`: float between 0 and 0.5, corresponds to the percentage of the training dataset that is allocated for the validation of the model during its training. Setting this value to 0 automatically deactivates the Early Stopping mechanism that is utilized during training.
+
+### Training <a name = "training"></a>
 
 The second endpoint is called `training` and takes care of the model's training. The relevant function's arguments are:
 
@@ -31,11 +39,24 @@ The second endpoint is called `training` and takes care of the model's training.
 - `epochs`: integer with default value 100, corresponds to the maximum number of training epochs (or exact number of training epochs if Early Stopping is deactivated).
 - `patience`: integer with default value 12, corresponds to the number of patience epochs of the Early Stopping mechanism. If set to -1, it is deactivated.
 
-Finally, the third endpoint is called `evaluation` and the relevant function call has the following two arguments:
+### Evaluation <a name = "evaluation"></a>
+
+After having trained a model with a satisfactory final MSE (preferably on validation data), the model can be evaluated on unseen data-points, using the `evaluation` endpoint. Note that the data need to be properly labeled, as this process is not equivalent to inference. The `backend/data` directory of the present repository contains a [test_data.csv](/backend/data/test_data.csv) file which may be used for this purpose, but feel free to create your own custom dataset or use other publicly available ones, as long as they conform to the standards of the PM2.5 dataset when it comes to feature names, types, etc. The arguments for the relevant call are:
 
 - `eval_batch_size`: integer with default value 32, corresponds to the size of the data batches during model evaluation.
-- `file`: a .csv file containing the testing data, to be uploaded so that the model can be evaluated.
+- `file`: a .csv file containing the evaluation data, to be uploaded so that the model can be evaluated.
 
+### Inference <a name = "inference"></a>
+
+Finally, the last endpoint called `inference` is perhaps the most important one when it comes to realistic applications, since the real solution to problems comes only after the model is deployed and exposed to new data. The data-points used for inference must correspond to feature matrices with rows equal to the `window_size` parameter used during preprocessing and training, conforming to the following format:
+
+| | pm2.5  | DEWP | TEMP | PRES | cbwd | Iws | Is | Ir |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 0  | ...  | ... | ... | ... | ... | ... | ... | ... |
+
+## Streamlit <a name = "streamlit"></a>
+
+As far as the application's frontend is concerned, it is based on [Streamlit](https://streamlit.io/https://streamlit.io/)
 All of the aforementioned arguments are input by users on the application's client side, which corresponds to a streamlit server.
 
 TO BE CONTINUED
