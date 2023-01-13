@@ -72,3 +72,4 @@ git clone https://github.com/srigas/IMV-LSTM_FastAPI-Streamlit_Implementation
 
 Next, nagivate into the main directory of the repository and run `docker-compose build` followed by `docker-compose run`. This is all that is required for the web app to start running. If everything has gone smoothly, the terminal must inform you about the healthy condition of both containers, as well as where to navigate in your browser in order to interact with the Streamlit UI (see image below for reference).
 
+![Terminal](https://github.com/srigas/temp_rep/blob/main/imvlstmstreamlit/terminal.png)
