@@ -56,6 +56,8 @@ Finally, the last endpoint called `inference` is perhaps the most important one 
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 0  | ...  | ... | ... | ... | ... | ... | ... | ... |
 
+The directory `backend/data` contains a [sample_request.csv](/backend/data/sample_request.csv) file, which corresponds to a sample request for inference, for `window_size=10`. Feel free to construct your own.
+
 ## Streamlit <a name = "streamlit"></a>
 
 As far as the application's frontend is concerned, it is based on [Streamlit](https://streamlit.io/https://streamlit.io/) and creates a user interface where all the endpoint call parameters can be configured through sliders. The following image shows how the UI looks like once everything is up and running. To customize the theme (for example, change by default to a darker theme) you can tinker with the [config.toml](/frontend/.streamlit/config.toml) file.
