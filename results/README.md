@@ -1,1 +1,0 @@
-This folder does not contain source files, it is simply used as a sink for some intermediate results, such as pre-processed data or trained models, in case the user needs to retrieve them (they are not retrieved by any endpoint calls).

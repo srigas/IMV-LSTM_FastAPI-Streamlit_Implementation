@@ -1,0 +1,3 @@
+The files in this directory do not correspond to source files, but rather some intermediate results, namely preprocessed data, a dictionary of scaler values and a trained model, in case the user needs to retrieve them (they are not returned by any endpoint calls).
+
+While the directory is supposed to be empty before the first preprocessing/training run, the files are provided in case the user simply wants to test evaluation and/or inference, so they don't have to wait during model training. The parameters used for preprocessing and training are the default ones, which means that the provided model is by no means "perfect".
