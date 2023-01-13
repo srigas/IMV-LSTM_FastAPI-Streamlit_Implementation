@@ -56,12 +56,19 @@ Finally, the last endpoint called `inference` is perhaps the most important one 
 
 ## Streamlit <a name = "streamlit"></a>
 
-As far as the application's frontend is concerned, it is based on [Streamlit](https://streamlit.io/https://streamlit.io/) and creates a user interface where all the endpoint call parameters can be configured through sliders. The following is a mini-presentation of how the UI works and what its outputs are.
+As far as the application's frontend is concerned, it is based on [Streamlit](https://streamlit.io/https://streamlit.io/) and creates a user interface where all the endpoint call parameters can be configured through sliders. The following image shows how the UI looks like once everything is up and running. To customize the theme (for example, change by default to a darker theme) you can tinker with the [config.toml](/frontend/.streamlit/config.toml) file.
 
 ## Docker <a name = "docker"></a>
 
-lalala
+In order to ensure compatibility irregardless of OS, python versions, libraries, etc. the web application has been containerized into [Docker](https://www.docker.com/) containers. Both the frontend and backend have their own Dockerfile and their relative dependency is encoded into the docker-compose.yml file in the root directory. 
 
 ### Installation <a name = "installation"></a>
 
-lalala
+To run the web app on your machine, you need to have Docker installed. First, clone the repository to a local folder using
+
+```
+git clone https://github.com/srigas/IMV-LSTM_FastAPI-Streamlit_Implementation
+```
+
+Next, nagivate into the main directory of the repository and run `docker-compose build` followed by `docker-compose run`. This is all that is required for the web app to start running. If everything has gone smoothly, the terminal must inform you about the healthy condition of both containers, as well as where to navigate in your browser in order to interact with the Streamlit UI (see image below for reference).
+
