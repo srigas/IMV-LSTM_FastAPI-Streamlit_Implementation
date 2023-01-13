@@ -39,7 +39,7 @@ The second endpoint is called `training` and takes care of the model's training.
 - `epochs`: integer with default value 100, corresponds to the maximum number of training epochs (or exact number of training epochs if Early Stopping is deactivated).
 - `patience`: integer with default value 12, corresponds to the number of patience epochs of the Early Stopping mechanism. If set to -1, it is deactivated.
 
-Note that the training happens using the CPU of your machine, so if you intend to train your model for many epochs, you may have to wait for a while. For this reason, the `backend/results` folder contains some already preprocessed data along with a trained model, in case evaluation and inference are the only things that the user wants to try out.
+Note that the training happens using the CPU of your machine, so if you intend to train your model for many epochs, you may have to wait for a while. For this reason, the `backend/results` directory contains some already preprocessed data along with a trained model, in case evaluation and inference are the only things that the user wants to try out.
 
 ### Evaluation <a name = "evaluation"></a>
 
