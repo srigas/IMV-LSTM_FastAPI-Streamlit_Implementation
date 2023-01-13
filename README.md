@@ -39,6 +39,8 @@ The second endpoint is called `training` and takes care of the model's training.
 - `epochs`: integer with default value 100, corresponds to the maximum number of training epochs (or exact number of training epochs if Early Stopping is deactivated).
 - `patience`: integer with default value 12, corresponds to the number of patience epochs of the Early Stopping mechanism. If set to -1, it is deactivated.
 
+Note that the training happens using the CPU of your machine, so if you intend to train your model for many epochs, you may have to wait for a while. For this reason, the `backend/results` folder contains some already preprocessed data along with a trained model, in case evaluation and inference are the only things that the user wants to try out.
+
 ### Evaluation <a name = "evaluation"></a>
 
 After having trained a model with a satisfactory final MSE (preferably on validation data), the model can be evaluated on unseen data-points, using the `evaluation` endpoint. Note that the data need to be properly labeled, as this process is not equivalent to inference. The `backend/data` directory of the present repository contains a [test_data.csv](/backend/data/test_data.csv) file which may be used for this purpose, but feel free to create your own custom dataset or use other publicly available ones, as long as they conform to the standards of the PM2.5 dataset when it comes to feature names, types, etc. The arguments for the relevant call are:
