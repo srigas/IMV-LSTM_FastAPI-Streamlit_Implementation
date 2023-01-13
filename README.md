@@ -56,7 +56,12 @@ Finally, the last endpoint called `inference` is perhaps the most important one 
 
 ## Streamlit <a name = "streamlit"></a>
 
-As far as the application's frontend is concerned, it is based on [Streamlit](https://streamlit.io/https://streamlit.io/)
-All of the aforementioned arguments are input by users on the application's client side, which corresponds to a streamlit server.
+As far as the application's frontend is concerned, it is based on [Streamlit](https://streamlit.io/https://streamlit.io/) and creates a user interface where all the endpoint call parameters can be configured through sliders. The following is a mini-presentation of how the UI works and what its outputs are.
 
-TO BE CONTINUED
+## Docker <a name = "docker"></a>
+
+lalala
+
+### Installation <a name = "installation"></a>
+
+lalala
