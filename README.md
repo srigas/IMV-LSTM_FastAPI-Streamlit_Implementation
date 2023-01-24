@@ -62,7 +62,7 @@ The directory `backend/data` contains a [sample_request.csv](/backend/data/sampl
 
 As far as the application's frontend is concerned, it is based on [Streamlit](https://streamlit.io/https://streamlit.io/) and creates a user interface where all the endpoint call parameters can be configured through sliders. The following image shows how the UI looks like once everything is up and running. To customize the theme (for example, change by default to a darker theme) you can tinker with the [config.toml](/frontend/.streamlit/config.toml) file.
 
-![UI](https://github.com/srigas/temp_rep/blob/main/imvlstmstreamlit/uigif.gif)
+https://user-images.githubusercontent.com/70939180/214250664-baa7aaa8-7ca4-4223-b76b-24e1bcb0c5d8.mp4
 
 ## Docker <a name = "docker"></a>
 
